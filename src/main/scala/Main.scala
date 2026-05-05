@@ -1,6 +1,7 @@
 package de.agm.sparkscalaproject
 
 import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Main {
@@ -20,18 +21,29 @@ object Main {
     df.printSchema()
 
     // ways to select columns from our dataframes
-    df.select("Date","Open","Close").show()
+    //df.select("Date","Open","Close").show()
     // using object column
-    val column = df("Date")
+    //val column = df("Date")
     // using a function
-    col("Date")
+    //col("Date")
     // import spark implicits
-    import spark.implicits._
-    $"Date"
+    //import spark.implicits._
+    //$"Date"
 
     //df("Close") -> uses the apply
     //df.select(col("Date"), $"Open", df("Close")).show()
     // or
-    df.select(column, $"Open", df("Close")).show()
+    //df.select(column, $"Open", df("Close")).show()
+
+    val column2 = df("Open")
+    val newColumn = (column2 + 2.0).as("OpenIncreasedBy2")
+    // column2 + (2.0)
+    val columnString = column2.cast(StringType)
+
+    df.select(column2,newColumn,columnString)
+      .filter(newColumn > 2.0)
+      .filter(newColumn > column2)
+      .filter(newColumn === column2)
+      .show()
   }
 }
