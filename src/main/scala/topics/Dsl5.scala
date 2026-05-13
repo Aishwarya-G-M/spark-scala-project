@@ -5,7 +5,7 @@ import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Dsl5 {
-  def run(df: DataFrame) : Unit = {
+  def run(df: DataFrame) : DataFrame = {
     // 1. Rename all columns to be of camel case format
     df.withColumnRenamed("Open","open")
       .withColumnRenamed("Close","close") // we are able to append the .withColumnRenamed this way because
@@ -27,5 +27,6 @@ object Dsl5 {
 
     // 3. filter to days when the close price was more than 10% higher than the opening price on that day
     stockData.filter(col("close") > col("open")*1.1).show();
+    stockData
   }
 }

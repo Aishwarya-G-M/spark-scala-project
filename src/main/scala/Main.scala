@@ -1,6 +1,6 @@
 package de.agm.sparkscalaproject
 
-import de.agm.sparkscalaproject.topics.Dsl5
+import de.agm.sparkscalaproject.topics.{Dsl5, FuncsActingOnMultipleRowsPractice}
 import org.apache.spark.sql.functions.{col, current_timestamp, expr, lit}
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.{DataFrame, SparkSession, functions}
@@ -73,6 +73,7 @@ object Main {
     df.createTempView("df")
     spark.sql("Select * from df").show()
 
-    Dsl5.run(df)
+    val columnModifiedDF = Dsl5.run(df)
+    FuncsActingOnMultipleRowsPractice.run(columnModifiedDF)
   }
 }
