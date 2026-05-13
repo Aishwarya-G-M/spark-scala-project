@@ -1,6 +1,6 @@
 package de.agm.sparkscalaproject
 
-import de.agm.sparkscalaproject.topics.{Dsl5, FuncsActingOnMultipleRowsPractice}
+import de.agm.sparkscalaproject.topics.{Dsl5, ExploringWindowFunctions, FuncsActingOnMultipleRowsPractice}
 import org.apache.spark.sql.functions.{col, current_timestamp, expr, lit}
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.{DataFrame, SparkSession, functions}
@@ -74,6 +74,7 @@ object Main {
     spark.sql("Select * from df").show()
 
     val columnModifiedDF = Dsl5.run(df)
-    FuncsActingOnMultipleRowsPractice.run(columnModifiedDF)
+    val aggregatedDf = FuncsActingOnMultipleRowsPractice.run(columnModifiedDF)
+    ExploringWindowFunctions.run(aggregatedDf)
   }
 }

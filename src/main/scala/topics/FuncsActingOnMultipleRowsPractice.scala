@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions.{split, year}
 
 object FuncsActingOnMultipleRowsPractice {
   // the dataframe you receive here is column modified dataframe where column names are camel-cased
-  def run(columnRenamedStockData : DataFrame):Unit = {
+  def run(columnRenamedStockData : DataFrame):DataFrame = {
         import columnRenamedStockData.sparkSession.implicits._
 
     columnRenamedStockData
@@ -20,6 +20,8 @@ object FuncsActingOnMultipleRowsPractice {
       .groupBy(year($"date").as("year"))
       .max("close", "high")
       .show()
+
+    columnRenamedStockData
   }
 
 }
