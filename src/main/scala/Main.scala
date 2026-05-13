@@ -1,5 +1,6 @@
 package de.agm.sparkscalaproject
 
+import de.agm.sparkscalaproject.topics.Dsl5
 import org.apache.spark.sql.functions.{col, current_timestamp, expr, lit}
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.{DataFrame, SparkSession, functions}
@@ -71,5 +72,7 @@ object Main {
     // Recommendation is to use scala api
     df.createTempView("df")
     spark.sql("Select * from df").show()
+
+    Dsl5.run(df)
   }
 }
