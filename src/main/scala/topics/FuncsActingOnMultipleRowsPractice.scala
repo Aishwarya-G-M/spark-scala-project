@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions.{split, year}
 
 object FuncsActingOnMultipleRowsPractice {
   // the dataframe you receive here is column modified dataframe where column names are camel-cased
-  def run(columnRenamedStockData : DataFrame):DataFrame = {
+  def actOnMultipleRows(columnRenamedStockData : DataFrame):DataFrame = {
         import columnRenamedStockData.sparkSession.implicits._
 
     columnRenamedStockData

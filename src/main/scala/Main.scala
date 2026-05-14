@@ -74,7 +74,9 @@ object Main {
     spark.sql("Select * from df").show()
 
     val columnModifiedDF = Dsl5.run(df)
-    val aggregatedDf = FuncsActingOnMultipleRowsPractice.run(columnModifiedDF)
-    ExploringWindowFunctions.run(aggregatedDf)
+    val aggregatedDf = FuncsActingOnMultipleRowsPractice.actOnMultipleRows(columnModifiedDF)
+    ExploringWindowFunctions.highestClosingPricesPerYear(aggregatedDf)
   }
+
+  def add(a:Int, b : Int) : Int = a+b
 }
